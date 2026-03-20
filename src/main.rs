@@ -72,8 +72,8 @@ async fn main() -> ExitCode {
     let output = cli.output;
 
     if let Err(e) = run(cli).await {
-        output::print_error(&e, output);
-        return ExitCode::FAILURE;
+        let code = output::print_error(&e, output);
+        return ExitCode::from(code);
     }
 
     ExitCode::SUCCESS
